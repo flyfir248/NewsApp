@@ -29,12 +29,12 @@ def search():
         response = requests.get(url, params=params)
         data = response.json()
 
-        print(data)  # Print the data for debugging purposes
-
-        # Extract place information from news data
-        results = []
+        # Check if 'articles' key is present in the response
         if 'articles' in data:
-            for article in data['articles']:
+            articles = data['articles']
+            results = []
+
+            for article in articles:
                 result = {
                     'title': article.get('title', ''),
                     'description': article.get('description', ''),
@@ -42,10 +42,10 @@ def search():
                 }
                 results.append(result)
 
-        return render_template('result.html', results=results)
+            return render_template('result.html', results=results)
 
-    # Handle GET request
-    return render_template('index.html')
+    # Handle GET request or no articles found
+    return render_template('result.html', results=[])
 
 
 if __name__ == '__main__':
