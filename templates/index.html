@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>News Map</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='discord_style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>News Map</h1>
+        <form action="/search" method="POST">
+            <label for="topic">Topic:</label>
+            <input type="text" id="topic" name="topic"><br><br>
+            <label for="place">Place:</label>
+            <input type="text" id="place" name="place"><br><br>
+            <input type="submit" value="Search">
+        </form>
+    </div>
+</body>
+</html>

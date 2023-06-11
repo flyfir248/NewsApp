@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='discord_style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Search Results</h1>
+        <h2>{{ results|length }} Results Found</h2>
+        <ul class="results-list">
+            {% for result in results %}
+                <li>
+                    <h3>{{ result['title'] }}</h3>
+                    <p>{{ result['description'] }}</p>
+                    <a href="{{ result['url'] }}">Read More</a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        {% if results %}
+            <div class="pagination">
+                <form action="{{ request.path }}" method="get">
+                    {% if page > 1 %}
+                        <input type="hidden" name="page" value="{{ page-1 }}">
+                        <button type="submit">Previous</button>
+                    {% endif %}
+
+                    <span>Page {{ page }} of {{ total_pages }}</span>
+
+                    {% if page < total_pages %}
+                        <input type="hidden" name="page" value="{{ page+1 }}">
+                        <button type="submit">Next</button>
+                    {% endif %}
+                </form>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
