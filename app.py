@@ -13,6 +13,7 @@ def index():
     return render_template('index.html')
 
 # Form submission route
+# Form submission route
 @app.route('/search', methods=['GET', 'POST'])
 def search():
     if request.method == 'POST':
@@ -30,18 +31,20 @@ def search():
 
         # Extract place information from news data
         results = []
-        for article in data['articles']:
-            result = {
-                'title': article.get('title', ''),
-                'description': article.get('description', ''),
-                'url': article.get('url', '')
-            }
-            results.append(result)
+        if 'articles' in data:
+            for article in data['articles']:
+                result = {
+                    'title': article.get('title', ''),
+                    'description': article.get('description', ''),
+                    'url': article.get('url', '')
+                }
+                results.append(result)
 
         return render_template('result.html', results=results)
 
     # Handle GET request
     return render_template('index.html')
+
 
 
 if __name__ == '__main__':
