@@ -24,7 +24,7 @@ def search():
         url = 'https://newsapi.org/v2/everything'
         params = {
             'q': topic,
-            'apiKey': '987e029fec0c4ae5a8eef0c63b8fb84f'  # Replace with your actual News API key
+            'apiKey': ''  # Replace with your actual News API key
         }
         response = requests.get(url, params=params)
         data = response.json()
