@@ -12,7 +12,7 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-# Form submission route
+
 # Form submission route
 @app.route('/search', methods=['GET', 'POST'])
 def search():
@@ -29,6 +29,8 @@ def search():
         response = requests.get(url, params=params)
         data = response.json()
 
+        print(data)  # Print the data for debugging purposes
+
         # Extract place information from news data
         results = []
         if 'articles' in data:
@@ -44,7 +46,6 @@ def search():
 
     # Handle GET request
     return render_template('index.html')
-
 
 
 if __name__ == '__main__':
